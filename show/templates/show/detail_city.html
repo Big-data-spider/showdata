@@ -1,0 +1,64 @@
+{% extends 'index_exd.html' %}
+{#{% load pagination_tags %}#}
+
+{% block tilte %}
+    {{ infos.city }}市房源
+{% endblock %}
+
+{% block title2 %}
+    房源列表
+{% endblock %}
+
+
+{% block list %}
+
+
+    {#    {% autopaginate posts 50 %}#}
+
+    {% for infos in posts %}
+        <li class="highlight">
+            <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+            位于
+{#            <a href="{% url 'detail' %}/?house_area={{ infos.house_area }}&rent_money={{ infos.rent_money }}&city={{ infos.city }}&floor={{ infos.floor }}&pred_money={{ infos.pred_money }}">{{ infos.province }}{{ infos.city }}</a>#}
+            <a href="/show/{{ infos.id }}/detail_id/">{{ infos.region }}地区{{ infos.province }}省{{ infos.city }}市</a>
+
+            的一套房源租金为{{ infos.rent_money }} 状态
+            {% if infos in wor_infos %}
+                <font color="red">异常</font>
+
+            {% else %}
+                <font color='green'>正常</font>
+
+            {% endif %}
+
+            <a href="/show/{{ infos.id }}/detail_id/">查看详情</a>
+
+        </li>
+    {% empty %}
+        暂无数据
+    {% endfor %}
+
+    <!-- 如果当前是第一页，就不显示【上一页】链接 -->
+    {% ifnotequal curPage 1 %}
+        <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageUp">
+            上一页
+        </a>
+    {% endifnotequal %}
+
+    第{{ curPage }}/{{ allPage }}页
+
+    <!-- 如果当前是最后一页，就不显示【下一页】链接 -->
+    {% ifnotequal curPage allPage %}
+        <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageDown">
+            下一页
+        </a>
+    {% endifnotequal %}
+
+    {#    {% paginate %}#}
+
+{% endblock %}
+
+{% block pie %}
+    {label: "正常", data: {{ nor_pr }}},
+    {label: "异常", data: {{ wor_pr }}},
+{% endblock %}

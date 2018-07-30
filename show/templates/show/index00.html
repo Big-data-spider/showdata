@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+{% for i in tklist %}
+    <li ><h1>{{ i.house_area }}</h1></li>
+{% empty %}
+    <h1>没东西</h1>
+{% endfor %}
+</ul>
+
+</body>
+</html>

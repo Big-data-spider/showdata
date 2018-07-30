@@ -1,0 +1,130 @@
+{% extends 'index_exd.html' %}
+
+{% block tilte %}
+    房源数据已处理信息
+{% endblock %}
+
+{% block forms_left %}
+    <li><span class="count"> {{ hnum_city_num }} <span class="sparkline"></span></span> 数据总数</li>
+    <li><span class="count"> {{ error_num }} <span class="sparkline"></span></span> 租金异常</li>
+    <li><span class="count"> {{ province }}{{ city }} <span class="sparkline"></span></span> 房源地域
+    </li>
+    <li><span class="count"> {{ nor_num }} <span class="sparkline"></span></span> 正常</li>
+    <li><span class="count">5% <span class="sparkline"></span></span> other stats</li>
+{% endblock %}
+
+{% block forms_right %}
+    <li><span class="count">{{ t_n }} <span class="sparkline"></span></span> 当前时间</li>
+    <li><span class="count">{{ err_pr }}% <span class="sparkline"></span></span> 异常占比</li>
+    <li><span class="count">{{ also_has }} <span class="sparkline"></span></span> 本市还有</li>
+    <li><span class="count">{{ nor_pr }}% <span class="sparkline"></span></span> 正常占比</li>
+    <li><span class="count">5% <span class="sparkline"></span></span> other stats</li>
+{% endblock %}
+
+{% block data_pic %}
+{% endblock %}
+
+{% block pie_pic %}
+{% endblock %}
+
+{% block title2 %}
+    详情
+{% endblock %}
+
+{% block list %}
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        所在区划：
+        <a href="/show/{{ region }}/detail_regin/">{{ region }}</a>
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        省份：
+        <a href="/show/{{ province }}/detail_povins/">{{ province }}</a>
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        市别：
+        <a href="/show/{{ city }}/detail_city/">{{ city }}</a>
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        套型：
+        {{ room }}室{{ hall }}厅{{ toilet }}卫
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        面积：
+        {{ house_area }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        租金：
+        {{ rent_money }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        朝向：
+        {{ toward }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        层区：
+        {{ level }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        层数：
+        {{ floor }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        配套设施：
+        {{ facility }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+        租金应为：
+        {{ pred_money }}
+
+    </li>
+
+    <li class="highlight">
+        <span class="glyphicons activity-icon shopping_cart"><i></i></span>
+
+        租金状态：
+        {% if item_info in wor_infos %}
+            <font color="red">异常</font>
+        {% else %}
+            <font color='green'>正常</font>
+        {% endif %}
+
+    </li>
+
+{% endblock %}
+
+{% block pie %}
+    {label: "正常", data: {{ nor_pr }}},
+    {label: "异常", data: {{ err_pr }}},
+{% endblock %}
